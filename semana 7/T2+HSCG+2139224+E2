@@ -1,0 +1,19 @@
+double total = 0.0;
+double vf = 0.0;
+double v0 = 0.0;
+double aceleracion = 0.0;
+double tiempo = 0.0;
+
+Console.WriteLine ("Ho Sung Choi Galindo - 2139224");
+Console.WriteLine ("INGRESE VELOCIDAD INICIAL: ");
+Console.ReadLine (v0);
+
+Console.WriteLine ("INGRESE ACELERACION: ");
+Console.ReadLine (aceleracion);
+
+Console.WriteLine ("INGRESE TIEMPO: ");
+Console.ReadLine (tiempo);
+
+total = Console.WriteLine (aceleracion * tiempo);
+Console.WriteLine (v0 + total);
+Console.ReadKey ();
