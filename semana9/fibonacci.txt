@@ -1,0 +1,36 @@
+using System;
+
+namespace Fibonacci
+{
+  //Ho Sung Choi Galindo
+  //2139224
+  //Fibonacci
+  class Program
+  {
+  static void Main(string[] args)
+  {
+    int a = 0;
+    int b = 1;
+    int c;
+    int count = 2;
+    Console.Write("Ingrese un numero para aplicar Fibonacci");
+    int num = int.Parse(Console.ReadLine());
+
+
+
+    Console.WriteLine("los nuemeros de la tabla de fibonacci son" + num);
+    Console.Write(a + " " + b + " ");
+
+    while (count < num)
+    {
+      c = a + b;
+      Console.Write(c + " ");
+      a = b;
+      b = c;
+      count++;
+    }
+
+      Console.WriteLine();
+    }
+  }
+}
