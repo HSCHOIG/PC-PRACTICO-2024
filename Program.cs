@@ -6,6 +6,7 @@ namespace Proyecto1_BANCOELMAMALON
 {
     class Program
     {
+        //variables int para uso general
         static int contador = 0;
         static int contador2 = 0;
 
@@ -53,7 +54,7 @@ namespace Proyecto1_BANCOELMAMALON
                 {
                     Console.WriteLine("DPI NO VALIDO");
                 }
-            } while (DPI <= 10000);
+            } while (DPI <= 10000); // VERIFICAION DE LA CANTIDAD DE DIGITOS
             Console.WriteLine("");
 
             // INGRESO DE TELEFONO
@@ -61,7 +62,7 @@ namespace Proyecto1_BANCOELMAMALON
             {
                 Console.WriteLine("Ingrese Su Numero Telefonico (8 digitos)");
                 NumeroTelefonico = int.Parse(Console.ReadLine());
-                if (NumeroTelefonico <= 10000)
+                if (NumeroTelefonico <= 10000) //VERIFICACION DE LA CANTIDAD DE DIGITOS
                 {
                     Console.WriteLine("Numero de Telefono no Valido");
                 }
@@ -78,18 +79,20 @@ namespace Proyecto1_BANCOELMAMALON
             bool mostrarMenu = true;
             while (mostrarMenu)
             {
+                //INICIO DEL LOOP DEL MENU HASTA QUE SE SELECCIONE LA OPCION 6
                 Console.WriteLine("-------------------------------------");
                 Console.WriteLine("MENU DE USUARIO\n");
                 Console.WriteLine("1. VER INFORMACION DE LA CUENTA");
                 Console.WriteLine("2. COMPRAR UN PRODUCTO FINANCIERO");
                 Console.WriteLine("3. VENDER PRODUCTO FINANCIERO");
                 Console.WriteLine("4. ABONAR A CUENTA");
-                Console.WriteLine("5. SIMULAR PASO DEL TIEMPO");
+                Console.WriteLine("5. INTERESES");
                 Console.WriteLine("6. SALIR");
                 Console.WriteLine("-------------------------------------");
                 Console.WriteLine("INGRESE LA OPCION QUE DESEA EFECTUAR");
                 int numero = int.Parse(Console.ReadLine());
 
+                //SWITCH PARA MOSTRAR EL MENU Y SOLICITAR UN INGRESO DE OPCION
                 switch (numero)
                 {
                     case 1:
@@ -108,7 +111,10 @@ namespace Proyecto1_BANCOELMAMALON
                         Abonar();
                         break;
                     case 5:
-                        Console.WriteLine("SIMULAR PASO DEL TIEMPO");
+                        Console.WriteLine("INTERESES");
+                        Console.WriteLine("Su cuenta ha generado intereses este mes:");
+                        Console.WriteLine("El total de su cuenta con intereses: " + saldoin);
+                        Console.ReadKey();
 
                         break;
                     case 6:
@@ -122,7 +128,7 @@ namespace Proyecto1_BANCOELMAMALON
             }
         }
 
-        public static void InfoCuenta()
+        public static void InfoCuenta() //METODO PARA SOLICITAR Y MOSTRAR DATOS DEL USUARIO
         {
             Console.WriteLine("-------------------------------------");
             Console.WriteLine("VER INFORMACION DE LA CUENTA");
@@ -136,7 +142,7 @@ namespace Proyecto1_BANCOELMAMALON
             Console.ReadKey();
         }
 
-        public static void Comprar()
+        public static void Comprar() //COMPRA DE PRODUCTO FINANCIERO
         {
             Console.WriteLine("-------------------------------------");
             Console.WriteLine("Ha ingresado a la compra de producto financiero");
@@ -145,16 +151,17 @@ namespace Proyecto1_BANCOELMAMALON
             Console.WriteLine("-------------------------------------");
 
             char opcion2 = Console.ReadLine().ToLower()[0];
-            //decimal saldoin = 2500m;
+            //VARIABLES EN DECIMAL PARA PODER OPERAR DECIMALES
             decimal multp = 0.1m;
             decimal resultado = 0.0m;
             decimal totaln = 0.0m;
 
             if (opcion2 == 'y')
             {
+                //RESULTADO DE LA OPERACION
                 resultado = saldoin * multp;
                 totaln = saldoin - resultado;
-
+                //SE GUARDA EL RESULTADO EN LA VARIABLE DE LA CUENTA INICIAL PARA PODER REEMPLAZAR VALORES
                 saldoin = totaln;
                 Console.WriteLine(saldoin);
                 Console.WriteLine("-------------------------------------");
@@ -175,7 +182,7 @@ namespace Proyecto1_BANCOELMAMALON
             Console.WriteLine("-------------------------------------");
 
             char opcionv = Console.ReadLine().ToLower()[0];
-            //decimal saldoinicial =2500;
+            //VARIABLES DECLARADAS COMO DECIMALES
             decimal porc = 0.11m;
             decimal resultado = 0.0m;
             decimal totaln = 0.0m;
@@ -184,8 +191,10 @@ namespace Proyecto1_BANCOELMAMALON
             {
                 if (saldoin > 500)
                 {
+                    //SE OPERA LA VENTA DE PRODUCTO FINANCIERO
                     resultado = saldoin * porc;
                     totaln = saldoin + resultado;
+                    //SE IGUALA A EL VALOR DE LA CUENTA INICIAL PARA REEMPLAZAR
                     saldoin = totaln;
 
                     Console.WriteLine("-------------------------------------");
@@ -196,6 +205,7 @@ namespace Proyecto1_BANCOELMAMALON
                 }
                 else
                 {
+                    //OPCION ALTERNA SI NO SE TIENE EL MONTO MINIMO DE LA CUENTA
                     Console.WriteLine("-------------------------------------");
                     Console.WriteLine("El monto debe ser mayor a 500.");
                     Console.WriteLine("-------------------------------------");
@@ -226,16 +236,22 @@ namespace Proyecto1_BANCOELMAMALON
             Console.WriteLine("Abonar el doble a su cuenta?");
             Console.WriteLine("Solo puede realizar esta accion 1 vez cada 2 meses");
             Console.WriteLine("-------------------------------------");
+            Console.ReadKey();
+
+            //DECLARACION DE VARIABLES PARA USO DEL ABONO
             int verif = 30;
             int verif2 = contador % 30;
+
+            //VARIABLE DONDE SE CUENTA LA CANTIDAD DE VECES QUE SE INGRESA A ESTA OPCION
             cuenta1 ++;
 
-
+            //SE VERIFICA SI ES DENTRO DEL MES QUE SE REALIZA LA OPCION
             if (contador < 30 && contador > 0)
             {
                 saldoin = saldoin * 2;
                 Console.WriteLine("Se ha abonado existosamente, su nuevo saldo es:");
                 Console.WriteLine(saldoin);
+                Console.ReadKey();
             }
             else
             {
@@ -246,23 +262,29 @@ namespace Proyecto1_BANCOELMAMALON
             }
         }
 
+        //INICIO DEL CICLO PARA SIMULAR EL PASO DEL TIEMPO
         static void CicloInfinito()
         {
             int dias = 0;
             while (true)
             {
-                Console.WriteLine($"Contador: {contador}");
                 Thread.Sleep(1000); // Pausa de 1 segundo (ajustable)
+                //UN SEGUNDO EQUIVALE A UN DIA
                 contador ++;
                 contador2 = 0;
+                decimal interes = 0;
+
                 if (contador == 30)
                 {
+                    //CADA VEZ QUE SE LLEGUE A 30 DIAS SE REALIZA:
+                    //SE REGRESA EL CONTADOR A 0
                     contador = contador - 30;
                     cuenta1 = 0;
-                    Console.WriteLine(contador);
-                    Console.WriteLine(contador2);
-                    Console.WriteLine(cuenta1);
-                    saldoin = saldoin * 1.2m;
+                    //SE OPERA LA TASA DE INTERES
+                    interes = saldoin * 0.02m;
+                    interes = interes * 0.083m;
+                    //SE SUMAN LOS INTERESES EN SEGUNDO PLANO
+                    saldoin = interes + saldoin;
                 }
             }
         }
